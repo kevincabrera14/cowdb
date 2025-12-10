@@ -1,0 +1,17 @@
+{% extends 'ourschool/base.html' %}
+{% block title %}Eliminar Evento{% endblock %}
+{% block content %}
+
+<div class="card shadow p-4">
+    <h3>¿Eliminar este evento?</h3>
+
+    <p><strong>{{ evento.get_tipo_display }}</strong> — {{ evento.fecha }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'detalle_animal' evento.animal.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

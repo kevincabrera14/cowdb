@@ -1,0 +1,30 @@
+{% extends 'ourschool/base.html' %}
+{% block title %}Registrar Animal{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Registrar Nuevo Animal</h2>
+
+<div class="card shadow p-4">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Código del animal</label>
+        <input type="text" name="codigo" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input type="text" name="nombre" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Foto</label>
+        <input type="file" name="foto" class="form-control" required>
+    </div>
+
+    <button class="btn btn-success">Guardar</button>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'ourschool/base.html' %}
+{% block title %}Agregar Evento{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Agregar Evento a {{ animal.nombre }}</h2>
+
+<div class="card shadow p-4">
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Tipo de evento</label>
+        <select name="tipo" class="form-select">
+            <option value="parto">Parto</option>
+            <option value="palpacion">Palpación</option>
+            <option value="destete">Destete</option>
+            <option value="nacimiento">nacimiento</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Fecha</label>
+        <input type="date" name="fecha" class="form-control" required>
+    </div>
+
+    <button class="btn btn-success">Guardar evento</button>
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,548 @@
+body {
+    background-color: #EFFFFF;
+}
+
+#nav {
+    background-color: #064e3b;
+    
+}
+
+#nav2 {
+    background-color: #064e3b;
+   
+}
+
+#logo {
+    width: 12vh;
+    height: 12vh;
+}
+
+/* jumbotron */
+
+#jumbotron {
+    background-color: #064e3b;
+    height: 120px;
+
+}
+
+.centrado {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.centrado-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.centrado-description {
+    font-size: 16px;
+}
+
+/* color/espaceado de botones login/singup */
+
+#login_boton {
+    position: relative;
+    top: 1vh;
+    margin-left: 9vh;
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+}
+
+#singup_boton {
+    position: relative;
+    margin-right: -5vh;
+    top: 1vh;
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+}
+
+#close_boton {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    
+    
+}
+
+#close_boton2 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    
+}
+
+#perfil_boton {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    right: 1vh;
+   
+}
+
+#perfil_boton2 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    right: 1vh;
+}
+
+#perfil_boton3 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    right: 1vh;
+   
+}
+
+#close_boton3 {
+    background-color: #064e3b;
+    border-color: rgb(255, 255, 255);
+    border-radius: 11px;
+    position: relative;
+    color: #EFFFFF;
+   
+    
+}
+
+#perfil_boton4 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    left: 3vh;
+    right: 3vh;
+}
+
+#close_boton4 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    left: 4vh;
+    
+}
+
+#back-boton {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    left: 1vh;
+    right: 2vh;
+    
+}
+
+#perfil_boton5 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    left: 3vh;
+    right: 3vh;
+    
+}
+
+#close_boton5 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    left: 4vh;
+}
+
+#back-boton2 {
+    background-color: #064e3b;
+    border-color: black;
+    border-radius: 11px;
+    position: relative;
+    left: 1vh;
+    right: 2vh;
+}
+
+#Rol {
+    align-items: center;
+}
+
+/* centrado imagenes rotativas */
+
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+/* Centrar todos los elementos h1 y p */
+h1,
+h2,
+h3,
+p {
+    text-align: center;
+}
+
+img {
+    display: block;
+  
+}
+
+/*imagenes rotativas*/
+
+/* centrado imagenes rotativas */
+
+.centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+/*css imagenes rotativas*/
+
+.image-container {
+    position: relative;
+    width: 450px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.image-container img.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+@keyframes imageChange {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+    }
+}
+
+
+#inicia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* estilos de login */
+
+#barra {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+#login {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+#loginclass {
+    background-color: #064e3b;
+}
+
+button {
+    background-color: #064e3b; 
+    border-radius: 10px;
+}
+
+#text-login {
+    text-align: center;
+}
+
+#ordenar {
+    margin-left: 13px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.perfil-card {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.profile-details h1 {
+    margin: 0;
+    color: #333;
+}
+
+.profile-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* editar perfil */
+
+.contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /* Cambiado a min-height para garantizar que el contenedor sea al menos del 100% de la altura de la ventana */
+}
+
+.carta {
+    background-color: #E0F2F1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    margin: 10px auto;
+    min-height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+
+
+.card {
+    position: relative;
+    width: 100%;          /* Ocupa todo el ancho disponible */
+    max-width: 450px;     /* Tamaño máximo ideal para formularios */
+    margin: 50px auto;     /* Centrado horizontal */
+    padding: 20px;         /* Espaciado interno */
+    height: auto;          /* Evita alturas fijas */
+}
+
+
+
+.card-info {
+    padding: 20px;
+}
+
+.profile-circle {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-section {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#logo2 {
+    position: absolute;
+    top: 65px;
+    right: 70px;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    z-index: 1;
+}
+
+.button-section .btn {
+    margin-bottom: 5px;
+}
+
+#Descripción {
+    position: relative;
+    right: 10%;
+    margin: 105px auto;
+
+}
+
+#nose {
+
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 18px;
+}
+
+#nose2 {
+
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 18px;
+}
+
+#singup_boton {
+    background-color: yellow;
+}
+
+
+footer {
+    background-color: #064e3b;
+
+}
+
+#footer2 {
+    background-color: #000000;
+    height: 4vh;
+}
+
+.mensaje {
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    text-align: left;
+    max-width: 70%;
+    margin: 10px auto;
+}
+
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+
+
+
+/* Fin cambios para el botón */
+.message {
+    color: #006624;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    /* Centra el texto */
+    display: none;
+}
+
+body {
+    background-color: #EFFFFF;
+}
+
+#contenedorcito {
+    font-family: Arial, sans-serif;
+    background-color: #EFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    border-radius: 5px;
+}
+
+input[type="text"],
+input {
+    width: 350px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.message {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    /* Centra el texto */
+    display: none;
+}
+
+#contenedorcito {
+
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+
+
+#contenedorcito button {
+    margin: 0 auto;
+
+}
+
+
+.alert alert-primary {
+    padding-top: 5px;
+    height: 10vh;
+    width: 10vh;
+}
+
+#chat {
+    border-bottom: black;
+    border-radius: 5px;
+    border-radius: 18px;
+    background-color: #FFFFFF;
+    border: 2px solid black;
+}
+
+#fondoregistro{
+    background-image: url("{% static 'images/registro.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    color: white; 
+}
+
+
+#div_transparente {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+  
+}
+
+#div_transparente2 {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+  
+}

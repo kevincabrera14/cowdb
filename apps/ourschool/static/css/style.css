@@ -1,0 +1,230 @@
+/* Responsiveness and combined styles */
+
+/* General */
+body {
+    background-color: #EFFFFF;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+#nav {
+    background-color: #0096A3;
+    height: 14vh;
+}
+
+#logo {
+    width: 12vh;
+    height: 12vh;
+}
+
+/* Jumbotron and sections */
+.centrado-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.centrado-description {
+    font-size: 16px;
+}
+
+.custom-bg-1, .custom-bg-2, .custom-bg-3, .custom-bg-4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 2rem;
+    transition: box-shadow 0.4s ease;
+    border-radius: 15px;
+}
+
+.custom-bg-1:hover, .custom-bg-2:hover, .custom-bg-3:hover, .custom-bg-4:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.custom-bg-1 {
+    background-color: #2196F3;
+}
+
+.custom-bg-2 {
+    background-color: #E91E63;
+}
+
+.custom-bg-3 {
+    background-color: #FFC107;
+}
+
+.custom-bg-4 {
+    background-color: #0096A3;
+}
+
+/* Animated title */
+.animated-h3 {
+    animation: growShrink 2s ease-in-out infinite alternate;
+}
+
+@keyframes growShrink {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Footer */
+footer {
+    background-color: #ffffff;
+    color: white;
+}
+
+#footer2 {
+    background-color: #000000;
+    height: 4vh;
+}
+
+/* Center elements */
+.text-center {
+    text-align: center;
+}
+
+/* Buttons */
+button, .btn {
+    background-color: #0AA116;
+    border: 1px solid black;
+    border-radius: 11px;
+}
+
+
+
+
+
+/* Image settings */
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Profile card */
+.perfil-card {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.profile-details h1 {
+    margin: 0;
+    color: #333;
+}
+
+.profile-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Edit profile */
+.contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.carta {
+    background-color: #E0F2F1;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    text-align: left;
+    max-width: 70%;
+    margin: 10px auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+
+/* Chat */
+#chat {
+    border: 2px solid black;
+    border-radius: 18px;
+    background-color: #FFFFFF;
+}
+
+/* Other form styles */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Message */
+.message {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    display: none;
+}
+
+/* Rotating images */
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 300px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.image-container img.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+@keyframes imageChange {
+    0%, 100% {
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 1;
+    }
+}
+
+a{
+    color: #FFFFFF;
+}

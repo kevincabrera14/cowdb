@@ -1,0 +1,164 @@
+{% extends 'ourschool/base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+{% if request.session.logueo.rol == 2 %}
+<!-- =======================
+        VISTA ESTUDIANTE
+========================= -->
+
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+<script src="{% static 'js/js.js' %}"></script>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Mis Animales</h2>
+
+</div>
+
+<div class="row">
+    {% for a in animales %}
+    <div class="col-md-4">
+        <div class="card shadow mb-4">
+            <img src="{{ a.foto.url }}" class="card-img-top" alt="Foto animal">
+            <div class="card-body">
+                <h5 class="card-title">{{ a.nombre }}</h5>
+                <p class="card-text">Código: <strong>{{ a.codigo }}</strong></p>
+
+                <a href="{% url 'detalle_animal' a.id %}" class="btn btn-info btn-sm">Detalles</a>
+                <a href="{% url 'editar_animal' a.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_animal' a.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+        </div>
+    </div>
+
+    <h1>Mis animales</h1>
+
+
+<div class="card-container">
+    {% for a in animales %}
+    <div class="card">
+        <img src="{{ a.foto.url }}" class="foto">
+        <h3>{{ a.nombre }}</h3>
+        <p>Código: {{ a.codigo }}</p>
+
+        <a href="{% url 'detalle_animal' a.id %}">Ver detalles</a>
+        <a href="{% url 'editar_animal' a.id %}">Editar</a>
+        <a href="{% url 'eliminar_animal' a.id %}">Eliminar</a>
+    </div>
+    {% endfor %}
+</div>
+
+    {% empty %}
+  
+        <a href="{% url 'mis_animales' %}" class="btn btn-warning btn-sm">ver mis animales</a>
+    {% endfor %}
+</div>
+
+
+
+{% elif request.session.logueo.rol == 3 %}
+<!-- =======================
+        VISTA DOCENTE
+========================= -->
+
+<link rel="stylesheet" href="{% static 'css/style2.css' %}">
+
+<nav id="nav" class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <img src="{% static 'img/logo.jpg' %}" alt="logo" id="logo">
+
+        <div>
+            <form class="d-flex" role="search">
+                <a href="{% url 'perfil' %}" id="perfil_boton3" class="btn btn-outline" type="button">Perfil</a>
+                <a href="{% url 'cerrar_session' %}" id="close_boton3" class="btn btn-outline" type="button">
+                    Cerrar Sesión
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+<h1>Mis animales</h1>
+
+<a href="{% url 'crear_animal' %}">Crear nuevo animal</a>
+
+<div class="card-container">
+    {% for a in animales %}
+    <div class="card">
+        <img src="{{ a.foto.url }}" class="foto">
+        <h3>{{ a.nombre }}</h3>
+        <p>Código: {{ a.codigo }}</p>
+
+        <a href="{% url 'detalle_animal' a.id %}">Ver detalles</a>
+        <a href="{% url 'editar_animal' a.id %}">Editar</a>
+        <a href="{% url 'eliminar_animal' a.id %}">Eliminar</a>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+<div class="cartica" id="carta1">
+    <div class="card-info">
+        <a href="#" class="btn btn-primary">Ver peticiones de estudiantes</a>
+    </div>
+</div>
+
+
+{% elif request.session.logueo.rol == 1 %}
+<!-- =======================
+        VISTA ADMIN
+========================= -->
+
+<section class="container mt-3 mb-3 p-3">
+    <h1 class="text-center">Usuarios</h1>
+    <a class="btn btn-dark rounded-pill mx-auto" href="#">Crear</a>
+
+    <form class="d-flex m-2" role="search" method="post" action="#">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Ingrese nombre de usuario" aria-label="Search"
+            name="buscar">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+
+    {% if data %}
+    <table class="table w-75 mx-auto text-center">
+        <thead>
+            <tr>
+                <th>Nombre y Apellido</th>
+                <th>Tipo de Documento</th>
+                <th>Número de Documento</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td>{{ i.nombre_apellido }}</td>
+                <td>{{ i.tipo_documento }}</td>
+                <td>{{ i.numero_documento }}</td>
+                <td>
+                    <a class="btn btn-warning" href="{% url 'admin_editar_formulario' i.correo %}">Editar</a>
+                    <a class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar?')"
+                        href="{% url 'eliminar_usuario' i.correo %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-center">No hay resultados</p>
+    {% endif %}
+</section>
+
+{% else %}
+<p>Esta página no está disponible para tu rol.</p>
+{% endif %}
+
+{% endblock %}

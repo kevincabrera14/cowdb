@@ -1,0 +1,45 @@
+{% extends 'ourschool/base.html' %}
+{% block title %}Detalle del Animal{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <img src="{{ animal.foto.url }}" class="card-img-top">
+            <div class="card-body">
+                <h4>{{ animal.nombre }}</h4>
+                <p>Código: {{ animal.codigo }}</p>
+
+                <a href="{% url 'editar_animal' animal.id %}" class="btn btn-warning btn-sm">Editar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <h3 class="mb-3">Eventos</h3>
+
+        <a href="{% url 'agregar_evento' animal.id %}" class="btn btn-primary mb-3">+ Agregar Evento</a>
+
+<ul class="list-group shadow">
+    {% for e in eventos %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            <strong>{{ e.get_tipo_display }}</strong> — {{ e.fecha }} <br>
+            <small class="text-muted">{{ e.descripcion }}</small>
+        </div>
+
+        <div>
+
+     <a href="{% url 'eliminar_evento' e.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+
+        </div>
+    </li>
+    {% empty %}
+    <li class="list-group-item text-muted">No hay eventos registrados.</li>
+    {% endfor %}
+</ul>
+    </div>
+</div>
+
+{% endblock %}

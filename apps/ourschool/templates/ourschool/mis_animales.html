@@ -1,0 +1,52 @@
+{% extends 'ourschool/base.html' %}
+{% block title %}Mis Animales{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <a href="{% url 'inicio_estudiante' %}" class="btn btn-primary">←</a>
+
+        <!-- Buscador -->
+        <form method="GET" action="" class="mx-3" style="flex-grow: 1; max-width: 300px;">
+            <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o ID..."
+                value="{{ request.GET.q }}">
+        </form>
+
+        <a href="{% url 'crear_animal' %}" class="btn btn-primary">+ Nuevo Animal</a>
+    </div>
+
+
+
+
+
+  
+
+ 
+    
+</div>
+
+<div class="row">
+    {% for a in animales %}
+    <div class="col-md-4">
+        <div class="card shadow mb-4">
+            <img src="{{ a.foto.url }}" class="card-img-top" alt="Foto animal">
+            <div class="card-body">
+                <h5 class="card-title">{{ a.nombre }}</h5>
+                <p class="card-text">Código: <strong>{{ a.codigo }}</strong></p>
+
+                <a href="{% url 'detalle_animal' a.id %}" class="btn btn-info btn-sm">Detalles</a>
+                <a href="{% url 'editar_animal' a.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_animal' a.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No tienes animales registrados aún.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

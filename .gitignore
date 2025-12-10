@@ -1,0 +1,37 @@
+# Entorno virtual
+venv/
+.venv/
+
+# Archivos de base de datos (no subir SQLlite)
+db.sqlite3
+
+# Archivos compilados
+*.pyc
+__pycache__/
+**/__pycache__/
+
+# Archivos de entorno (variables secretas)
+.env
+
+# Archivos temporales del sistema
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Archivos de medios (imágenes de usuarios)
+media/
+archivos/
+
+# Configuración de editor
+.vscode/
+.idea/
+
+# Archivos de OS
+.DS_Store
+Thumbs.db
+
+# Staticfiles generados automaticamente
+staticfiles/
