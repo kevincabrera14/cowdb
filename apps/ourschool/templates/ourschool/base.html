@@ -1,136 +1,33 @@
 {% load static %}
-<!--
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>base</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
 
-
-</head>
-
-<body>
-    <nav id="nav" class="navbar navbar-expand-lg ">
-        <div class="container-fluid">
-
-            <img src="{% static 'img/logo.jpg' %}" alt="logo" id="logo">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Our School</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Listar</a></li>
-                            <hr class="dropdown-divider">
-                            <li><a class="dropdown-item" href="{% url 'registarse' %}">Registrar</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-                <form class="d-flex" role="search">
-                    <a href="{% url 'registarse' %}"><button id="singup_boton" class="btn btn-outline"
-                            type="button">Regístrate</button></a>
-
-                    <a href="{% url 'registarse' %}"><button id="login_boton" class="btn btn-outline"
-                            type="button">Iniciar sesión</button></a>
-                </form>
-            </div>
-        </div>
-    </nav>
-    
-    contenido de el resto de paginas
-
-    <footer class="text-light">
-        <div class="container py-4">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-6">
-                    <h5>Contactanos</h5>
-                    <p><i class="bi bi-telephone"></i> Teléfono: (123) 456-7890</p>
-                    <p><i class="bi bi-envelope"></i> Email: OurSchool@gmail.com</p>
-                </div>
-                <div class="col-md-6">
-                    <h5>Nuestras redes</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#"><i class="bi bi-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="bi bi-instagram"></i> Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div id="footer2" class="text-center py-2">
-            <p>&copy; 2023 OurSchool</p>
-        </div>
-    </footer>
-</body>
-
--->
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Sistema Ganadero{% endblock %}</title>
-
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background: #f5f6fa;
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .card-img-top {
-            height: 180px;
-            object-fit: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="{% static 'js/js.js' %}"></script>
 
     {% block extra_css %}{% endblock %}
 </head>
+
 <body>
 
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-4">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">CowDB</a>
+            <a href="{% url 'inicio_estudiante' %}" class="btn btn-outline-light ms-auto">inicio</a>
+            <a href="{% url 'cerrar_session' %}" class="btn btn-outline-light ms-auto">Cerrar</a>
+           
+        </div>
+    </nav>
+
     <div class="container">
-        <a class="navbar-brand" href="#">Mi Ganado</a>
-            <a href="{% url 'cerrar_session' %}" id="close_boton3" class="btn btn-outline" type="button">Cerrar</a>
+        {% block content %}{% endblock %}
     </div>
-</nav>
 
-<div class="container">
-    {% block content %}{% endblock %}
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-{% block extra_js %}{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
 </body>
+
 </html>

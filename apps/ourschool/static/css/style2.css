@@ -4,39 +4,17 @@ body {
 
 #nav {
     background-color: #064e3b;
-    
+
 }
 
 #nav2 {
     background-color: #064e3b;
-   
+
 }
 
 #logo {
     width: 12vh;
     height: 12vh;
-}
-
-/* jumbotron */
-
-#jumbotron {
-    background-color: #064e3b;
-    height: 120px;
-
-}
-
-.centrado {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.centrado-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.centrado-description {
-    font-size: 16px;
 }
 
 /* color/espaceado de botones login/singup */
@@ -63,15 +41,15 @@ body {
     background-color: #064e3b;
     border-color: black;
     border-radius: 11px;
-    
-    
+
+
 }
 
 #close_boton2 {
     background-color: #064e3b;
     border-color: black;
     border-radius: 11px;
-    
+
 }
 
 #perfil_boton {
@@ -80,7 +58,7 @@ body {
     border-radius: 11px;
     position: relative;
     right: 1vh;
-   
+
 }
 
 #perfil_boton2 {
@@ -96,7 +74,7 @@ body {
     border-radius: 11px;
     position: relative;
     right: 1vh;
-   
+
 }
 
 #close_boton3 {
@@ -105,8 +83,8 @@ body {
     border-radius: 11px;
     position: relative;
     color: #EFFFFF;
-   
-    
+
+
 }
 
 #perfil_boton4 {
@@ -124,7 +102,7 @@ body {
     border-radius: 11px;
     position: relative;
     left: 4vh;
-    
+
 }
 
 #back-boton {
@@ -134,7 +112,7 @@ body {
     position: relative;
     left: 1vh;
     right: 2vh;
-    
+
 }
 
 #perfil_boton5 {
@@ -144,7 +122,7 @@ body {
     position: relative;
     left: 3vh;
     right: 3vh;
-    
+
 }
 
 #close_boton5 {
@@ -168,16 +146,6 @@ body {
     align-items: center;
 }
 
-/* centrado imagenes rotativas */
-
-.centered-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
-}
-
 /* Centrar todos los elementos h1 y p */
 h1,
 h2,
@@ -188,57 +156,9 @@ p {
 
 img {
     display: block;
-  
+
 }
 
-/*imagenes rotativas*/
-
-/* centrado imagenes rotativas */
-
-.centered-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    text-align: center;
-}
-
-/*css imagenes rotativas*/
-
-.image-container {
-    position: relative;
-    width: 450px;
-    height: 300px;
-    overflow: hidden;
-}
-
-.image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.image-container img.active {
-    opacity: 1;
-    z-index: 1;
-}
-
-@keyframes imageChange {
-
-    0%,
-    100% {
-        opacity: 0;
-    }
-
-    10%,
-    90% {
-        opacity: 1;
-    }
-}
 
 
 #inicia {
@@ -267,7 +187,7 @@ img {
 }
 
 button {
-    background-color: #064e3b; 
+    background-color: #064e3b;
     border-radius: 10px;
 }
 
@@ -339,11 +259,16 @@ body {
 
 .card {
     position: relative;
-    width: 100%;          /* Ocupa todo el ancho disponible */
-    max-width: 450px;     /* Tamaño máximo ideal para formularios */
-    margin: 50px auto;     /* Centrado horizontal */
-    padding: 20px;         /* Espaciado interno */
-    height: auto;          /* Evita alturas fijas */
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
+    max-width: 450px;
+    /* Tamaño máximo ideal para formularios */
+    margin: 50px auto;
+    /* Centrado horizontal */
+    padding: 20px;
+    /* Espaciado interno */
+    height: auto;
+    /* Evita alturas fijas */
 }
 
 
@@ -451,7 +376,6 @@ textarea {
 
 
 
-/* Fin cambios para el botón */
 .message {
     color: #006624;
     font-weight: bold;
@@ -511,38 +435,5 @@ input {
 }
 
 
-.alert alert-primary {
-    padding-top: 5px;
-    height: 10vh;
-    width: 10vh;
-}
-
-#chat {
-    border-bottom: black;
-    border-radius: 5px;
-    border-radius: 18px;
-    background-color: #FFFFFF;
-    border: 2px solid black;
-}
-
-#fondoregistro{
-    background-image: url("{% static 'images/registro.jpg' %}");
-    background-size: cover;
-    background-position: center;
-    color: white; 
-}
 
 
-#div_transparente {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    border-radius: 5px;
-  
-}
-
-#div_transparente2 {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 20px;
-    border-radius: 5px;
-  
-}

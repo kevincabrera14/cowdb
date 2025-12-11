@@ -31,7 +31,7 @@
 
         <div>
 
-     <a href="{% url 'eliminar_evento' e.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+     <a href="{% url 'eliminar_evento' e.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
 
         </div>
     </li>

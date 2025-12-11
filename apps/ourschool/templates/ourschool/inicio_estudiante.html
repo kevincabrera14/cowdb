@@ -7,7 +7,7 @@
 
 {% if request.session.logueo.rol == 2 %}
 <!-- =======================
-        VISTA ESTUDIANTE
+        VISTA usuario
 ========================= -->
 
 <link rel="stylesheet" href="{% static 'css/style2.css' %}">
@@ -37,23 +37,23 @@
     <h1>Mis animales</h1>
 
 
-<div class="card-container">
-    {% for a in animales %}
-    <div class="card">
-        <img src="{{ a.foto.url }}" class="foto">
-        <h3>{{ a.nombre }}</h3>
-        <p>Código: {{ a.codigo }}</p>
+    <div class="card-container">
+        {% for a in animales %}
+        <div class="card">
+            <img src="{{ a.foto.url }}" class="foto">
+            <h3>{{ a.nombre }}</h3>
+            <p>Código: {{ a.codigo }}</p>
 
-        <a href="{% url 'detalle_animal' a.id %}">Ver detalles</a>
-        <a href="{% url 'editar_animal' a.id %}">Editar</a>
-        <a href="{% url 'eliminar_animal' a.id %}">Eliminar</a>
+            <a href="{% url 'detalle_animal' a.id %}">Ver detalles</a>
+            <a href="{% url 'editar_animal' a.id %}">Editar</a>
+            <a href="{% url 'eliminar_animal' a.id %}">Eliminar</a>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
     {% empty %}
-  
-        <a href="{% url 'mis_animales' %}" class="btn btn-warning btn-sm">ver mis animales</a>
+
+    <a href="{% url 'mis_animales' %}" class="btn btn-warning btn-sm">ver mis animales</a>
     {% endfor %}
 </div>
 
@@ -61,54 +61,9 @@
 
 {% elif request.session.logueo.rol == 3 %}
 <!-- =======================
-        VISTA DOCENTE
+        VISTA "lista para usar bajo rol 3"
 ========================= -->
-
-<link rel="stylesheet" href="{% static 'css/style2.css' %}">
-
-<nav id="nav" class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <img src="{% static 'img/logo.jpg' %}" alt="logo" id="logo">
-
-        <div>
-            <form class="d-flex" role="search">
-                <a href="{% url 'perfil' %}" id="perfil_boton3" class="btn btn-outline" type="button">Perfil</a>
-                <a href="{% url 'cerrar_session' %}" id="close_boton3" class="btn btn-outline" type="button">
-                    Cerrar Sesión
-                </a>
-            </form>
-        </div>
-    </div>
-</nav>
-
-
-
-<h1>Mis animales</h1>
-
-<a href="{% url 'crear_animal' %}">Crear nuevo animal</a>
-
-<div class="card-container">
-    {% for a in animales %}
-    <div class="card">
-        <img src="{{ a.foto.url }}" class="foto">
-        <h3>{{ a.nombre }}</h3>
-        <p>Código: {{ a.codigo }}</p>
-
-        <a href="{% url 'detalle_animal' a.id %}">Ver detalles</a>
-        <a href="{% url 'editar_animal' a.id %}">Editar</a>
-        <a href="{% url 'eliminar_animal' a.id %}">Eliminar</a>
-    </div>
-    {% endfor %}
-</div>
-
-
-
-
-<div class="cartica" id="carta1">
-    <div class="card-info">
-        <a href="#" class="btn btn-primary">Ver peticiones de estudiantes</a>
-    </div>
-</div>
+<h2>no disponible</h2>
 
 
 {% elif request.session.logueo.rol == 1 %}

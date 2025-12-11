@@ -1,4 +1,8 @@
 
+#=====================================================================================================================
+#        IMPORTACIONES
+#====================================================================================================================
+
 from django.urls import reverse
 from django.core.mail import BadHeaderError
 from django.http import HttpResponseRedirect
@@ -9,26 +13,28 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-
 from .models import *
-from django.shortcuts import render, redirect
-
-
-
-
-#notas
-from django.shortcuts import render, redirect
 from .models import Usuario, Animal, EventoAnimal
 from django.contrib import messages
+from django.db.models import Q
 
 
-
+#=====================================================================================================================
+#        VISTAS CRUD 
+#=====================================================================================================================
 
 def inicio(request):
     return render(request, 'ourschool/inicio.html')
 
 def registrarse(request):
     return render(request, 'ourschool/registrarse.html')
+
+def inicio_profesor(request):
+   
+    return render(request, 'ourschool/inicio_profesor.html')
+
+def inicio_estudiante(request):
+    return render(request, 'ourschool/inicio_estudiante.html')
 
 def iniciar(request):
     email = None
@@ -65,6 +71,7 @@ def cerrar_session(request):
     except Exception as e:
         messages.error(request, f'Error: {e}')
         return redirect('inicio')  # O redirige a la página que consideres apropiada en caso de error
+    
 
 def registro(request):
     if request.method == "POST":
@@ -105,12 +112,60 @@ def registro(request):
 
     return HttpResponseRedirect(reverse('inicio'))
 
+
+
+
+def eliminar_usuario(request, correo):
+    if request.method == 'GET':
+        usuario = get_object_or_404(Usuario, correo=correo)
+        usuario.delete()
+        messages.success(request, 'Usuario eliminado exitosamente.')
+        return redirect('lista_usuarios')  
+    else:
+        return redirect('lista_usuarios')  
+
+def admin_editar_formulario(request, correo):
+    q = Usuario.objects.get(correo=correo)
+    contexto = {"id": correo, "data": q}
+    return render(request, 'ourschool/perfil.html', contexto)
+
+def perfil(request):
+    usuario = request.session.get("logueo", False)
+    q = Usuario.objects.get(correo=usuario['correo'])
+    contexto = {"data": q}
+    return render(request, "ourschool/perfil.html", contexto)
+
+def guardar_cambios_usuario(request, correo):
+    if request.method == "POST":
+        usuario = Usuario.objects.get(correo=correo)
+        # Actualizar los campos del usuario con los datos del formulario
+        usuario.nombre_apellido = request.POST.get('nombre_apellido')
+        usuario.correo = request.POST.get('correo')
+        usuario.contrasena = request.POST.get('contrasena')
+        usuario.telefono = request.POST.get('telefono')
+        # Guardar los cambios en la base de datos
+        usuario.save()
+        return redirect('inicio_estudiante')  # Redirigir a la página de perfil o a donde desees
+    else:
+        # Manejar el caso en el que no se haya enviado un formulario
+        return redirect('inicio_estudiante')  # Redirigir a la página de perfil o a donde desees
+
+
+
+
+
+
+#==========================================================================================================================================
+#        OTRAS FUNCIONES 
+#===================================================================================================================================================================
+
 def lista_usuarios(request):
     # Obtener datos de la base de datos
     data = Usuario.objects.all()
 
     # Pasar los datos a la plantilla
     return render(request, 'ourschool/inicio_estudiante.html', {'data': data})
+
 
 def guardar(request):
     if request.method == "POST":
@@ -156,9 +211,9 @@ def correo(request):
     if request.method == 'POST':
         destinatario = request.POST.get('email')  # Obtener el correo electrónico del formulario
         mensaje = """
-            <h1 style='color:blue;'>Our School</h1>
+            <h1 style='color:blue;'>CowDB</h1>
             <h3 style='color:black;'>Su solicitud ha sido tomada correctamente, un administrador se comunicará con usted para restablecer su contraseña</h3>
-            <h1 style='color:black;'>2024</h1>
+            <h1 style='color:black;'>2025</h1>
             """
 
         try:
@@ -174,75 +229,21 @@ def correo(request):
         # Si no es una solicitud POST, redirigir o mostrar un mensaje de error adecuado
         return HttpResponse("Método no permitido")
 
-def eliminar_usuario(request, correo):
-    if request.method == 'GET':
-        usuario = get_object_or_404(Usuario, correo=correo)
-        usuario.delete()
-        messages.success(request, 'Usuario eliminado exitosamente.')
-        return redirect('lista_usuarios')  
-    else:
-        return redirect('lista_usuarios')  
-
-def admin_editar_formulario(request, correo):
-    q = Usuario.objects.get(correo=correo)
-    contexto = {"id": correo, "data": q}
-    return render(request, 'ourschool/perfil.html', contexto)
-
-def perfil(request):
-    usuario = request.session.get("logueo", False)
-    q = Usuario.objects.get(correo=usuario['correo'])
-    contexto = {"data": q}
-    return render(request, "ourschool/perfil.html", contexto)
-
-def guardar_cambios_usuario(request, correo):
-    if request.method == "POST":
-        usuario = Usuario.objects.get(correo=correo)
-        # Actualizar los campos del usuario con los datos del formulario
-        usuario.nombre_apellido = request.POST.get('nombre_apellido')
-        usuario.correo = request.POST.get('correo')
-        usuario.contrasena = request.POST.get('contrasena')
-        usuario.telefono = request.POST.get('telefono')
-        # Guardar los cambios en la base de datos
-        usuario.save()
-        return redirect('inicio_estudiante')  # Redirigir a la página de perfil o a donde desees
-    else:
-        # Manejar el caso en el que no se haya enviado un formulario
-        return redirect('inicio_estudiante')  # Redirigir a la página de perfil o a donde desees
-
-def inicio_profesor(request):
-   
-    return render(request, 'ourschool/inicio_profesor.html')
-
-def inicio_estudiante(request):
-    return render(request, 'ourschool/inicio_estudiante.html')
 
 
 
 
 
 
+#===========================================================================================================================================
+#        INTEGRACION CowDB 
+#============================================================================================================================================
 
 
 
-
-
-
-
-
-
-# integracion con notas
-
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Usuario, Animal, EventoAnimal
-from django.contrib import messages
 
 # ---------------------------------------------------
-#   LISTAR ANIMALES DEL USUARIO
-# ---------------------------------------------------
-from django.db.models import Q
-
-# ---------------------------------------------------
-#   LISTAR ANIMALES DEL USUARIO + BUSCADOR
+#   CRUD animales
 # ---------------------------------------------------
 def mis_animales(request):
     if 'logueo' not in request.session:
@@ -339,17 +340,9 @@ def eliminar_animal(request, animal_id):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+# ---------------------------------------------------
+#   eventos animales 
+# ---------------------------------------------------
 
 
 def agregar_evento(request, animal_id):
@@ -382,19 +375,6 @@ def detalle_animal(request, animal_id):
         "animal": animal,
         "eventos": eventos
     })
-
-
-
-
-
-
-
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Animal, EventoAnimal
-
-
-
-# Editar evento
 
 
 

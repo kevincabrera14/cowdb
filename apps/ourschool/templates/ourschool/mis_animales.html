@@ -3,31 +3,26 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 ">
 
+    <!-- Botón atrás 
+    <a href="{% url 'inicio_estudiante' %}" class="btn btn-primary">
+        ←
+    </a>-->
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="{% url 'inicio_estudiante' %}" class="btn btn-primary">←</a>
+    <!-- Botón nuevo animal -->
+    <a href="{% url 'crear_animal' %}" class="btn btn-primary">
+        + Nuevo Animal
+    </a>
 
-        <!-- Buscador -->
-        <form method="GET" action="" class="mx-3" style="flex-grow: 1; max-width: 300px;">
-            <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o ID..."
-                value="{{ request.GET.q }}">
-        </form>
+    <!-- Buscador -->
+    <form method="GET" action="" class="flex-grow-1" style="min-width: 200px;">
+        <input type="text" name="q" class="form-control" placeholder="Buscar por nombre o ID..."
+            value="{{ request.GET.q }}">
+    </form>
 
-        <a href="{% url 'crear_animal' %}" class="btn btn-primary">+ Nuevo Animal</a>
-    </div>
-
-
-
-
-
-  
-
- 
-    
 </div>
+
 
 <div class="row">
     {% for a in animales %}
@@ -40,12 +35,12 @@
 
                 <a href="{% url 'detalle_animal' a.id %}" class="btn btn-info btn-sm">Detalles</a>
                 <a href="{% url 'editar_animal' a.id %}" class="btn btn-warning btn-sm">Editar</a>
-                <a href="{% url 'eliminar_animal' a.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a href="{% url 'eliminar_animal' a.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
             </div>
         </div>
     </div>
     {% empty %}
-        <p>No tienes animales registrados aún.</p>
+    <p>No tienes animales registrados aún.</p>
     {% endfor %}
 </div>
 
