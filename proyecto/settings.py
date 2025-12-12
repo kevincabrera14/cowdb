@@ -1,17 +1,26 @@
 from pathlib import Path
 import os
 
-# RUTA BASE DEL PROYECTO
+# ---------------------------------------------------------
+# RUTA BASE
+# ---------------------------------------------------------
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ---------------------------------------------------------
 # CONFIGURACIÓN GENERAL
 # ---------------------------------------------------------
 
-SECRET_KEY = 'django-insecure-gp4@os8l6$^dfipl%_3i9o7p-##(!^1$!+-d(=3t9xi)87u_w!'
-DEBUG = True
+SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ["*"]  # en producción cambia esto
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.railway.app',
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # ---------------------------------------------------------
 # APLICACIONES
@@ -25,8 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # tus apps
-    'apps.ourschool',  # <-- CORREGIDO
+    'apps.ourschool',
 ]
 
 # ---------------------------------------------------------
@@ -47,9 +55,8 @@ MIDDLEWARE = [
 # URLS Y WSGI
 # ---------------------------------------------------------
 
-ROOT_URLCONF = 'proyecto.urls'  # <-- CORREGIDO
-
-WSGI_APPLICATION = 'proyecto.wsgi.application'  # <-- CORREGIDO
+ROOT_URLCONF = 'proyecto.urls'
+WSGI_APPLICATION = 'proyecto.wsgi.application'
 
 # ---------------------------------------------------------
 # TEMPLATES
@@ -58,9 +65,7 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'  # <-- CORREGIDO
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates'  # si luego quieres un global templates/
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,18 +79,22 @@ TEMPLATES = [
 ]
 
 # ---------------------------------------------------------
-# BASE DE DATOS (SQLite por ahora)
+# BASE DE DATOS (PostgreSQL Railway)
 # ---------------------------------------------------------
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('PGDATABASE'),
+        'USER': os.getenv('PGUSER'),
+        'PASSWORD': os.getenv('PGPASSWORD'),
+        'HOST': os.getenv('PGHOST'),
+        'PORT': os.getenv('PGPORT'),
     }
 }
 
 # ---------------------------------------------------------
-# VALIDACIÓN DE CONTRASEÑAS
+# PASSWORDS
 # ---------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -101,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-co'
 TIME_ZONE = 'America/Bogota'
-
 USE_I18N = True
 USE_TZ = True
 
@@ -110,28 +118,24 @@ USE_TZ = True
 # ---------------------------------------------------------
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'     # producción
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # si luego creas una carpeta static global
-]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # ---------------------------------------------------------
-# CORREO SMTP
+# EMAIL
 # ---------------------------------------------------------
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'ka5849698@gmail.com'
-EMAIL_HOST_PASSWORD = 'ekckjctqseuvppot'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # ---------------------------------------------------------
-# AUTO FIELD
+# DEFAULT FIELD
 # ---------------------------------------------------------
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
