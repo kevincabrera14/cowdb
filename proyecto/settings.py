@@ -1,6 +1,9 @@
 from pathlib import Path
 import os
+import dj_database_url
+from dotenv import load_dotenv
 
+load_dotenv()
 # ---------------------------------------------------------
 # RUTA BASE
 # ---------------------------------------------------------
@@ -85,16 +88,35 @@ TEMPLATES = [
 # BASE DE DATOS (PostgreSQL Railway)
 # ---------------------------------------------------------
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('PGDATABASE'),
-        'USER': os.getenv('PGUSER'),
-        'PASSWORD': os.getenv('PGPASSWORD'),
-        'HOST': os.getenv('PGHOST'),
-        'PORT': os.getenv('PGPORT'),
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL and "railway.internal" not in DATABASE_URL:
+    # PostgreSQL público (local o producción externa)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
-}
+elif DATABASE_URL and "railway.internal" in DATABASE_URL:
+    # Railway (solo cuando corre en Railway)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600
+        )
+    }
+else:
+    # Local SIN PostgreSQL → SQLite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+
 
 # ---------------------------------------------------------
 # PASSWORDS
