@@ -1,1 +1,1 @@
-web: python manage.py collectstatic && gunicorn proyecto.wsgi
+web: gunicorn proyecto.wsgi --bind 0.0.0.0:$PORT
