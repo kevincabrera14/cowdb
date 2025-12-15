@@ -32,9 +32,9 @@
     <div class="col-md-4">
         <div class="card shadow mb-4">
             {% if a.foto %}
-            <img src="{{ animal.foto.url }}" class="card-img-top" alt="Foto animal">
+            <img src="{{ a.foto.url }}" class="card-img-top" alt="Foto animal">
             {% else %}
-            <img src="{% static 'ourschool/img/cowdb.png' %}" class="card-img-top" alt="Foto por defecto">
+            <img src="{% static 'img/cowdb.png' %}" class="card-img-top" alt="Foto por defecto">
             {% endif %}
 
             <div class="card-body">
