@@ -28,14 +28,19 @@
     {% for a in animales %}
     <div class="col-md-4">
         <div class="card shadow mb-4">
+            {% if a.foto %}
             <img src="{{ a.foto.url }}" class="card-img-top" alt="Foto animal">
+            {% else %}
+            <img src="{% static 'ourschool/img/animal_default.jpg' %}" class="card-img-top" alt="Foto por defecto">
+            {% endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ a.nombre }}</h5>
                 <p class="card-text">Código: <strong>{{ a.codigo }}</strong></p>
 
                 <a href="{% url 'detalle_animal' a.id %}" class="btn btn-info btn-sm">Detalles</a>
                 <a href="{% url 'editar_animal' a.id %}" class="btn btn-warning btn-sm">Editar</a>
-                <a href="{% url 'eliminar_animal' a.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
+                <a href="{% url 'eliminar_animal' a.id %}" class="btn btn-danger btn-sm"
+                    onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>
             </div>
         </div>
     </div>
