@@ -1,7 +1,10 @@
+{% load static %}
 {% extends 'ourschool/base.html' %}
 {% block title %}Mis Animales{% endblock %}
 
 {% block content %}
+
+
 
 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 ">
 
@@ -31,8 +34,9 @@
             {% if a.foto %}
             <img src="{{ a.foto.url }}" class="card-img-top" alt="Foto animal">
             {% else %}
-            <img src="{% static 'ourschool/img/cowdb.png' %}" class="card-img-top" alt="Foto por defecto">
+            <img src="{% static 'img/cowdb.png' %}" class="card-img-top" alt="Foto por defecto">
             {% endif %}
+
             <div class="card-body">
                 <h5 class="card-title">{{ a.nombre }}</h5>
                 <p class="card-text">Código: <strong>{{ a.codigo }}</strong></p>
