@@ -1,5 +1,5 @@
 from django.db import models
-from django.shortcuts import render
+from simple_history.models import HistoricalRecords
 
 
 class Usuario(models.Model):
@@ -8,31 +8,39 @@ class Usuario(models.Model):
         (2, "estudiante"),
         (3, "docente")
     )
+
     nombre_apellido = models.CharField(max_length=30)
     tipo_documento = models.CharField(max_length=30)
     numero_documento = models.CharField(max_length=30, default=0)
     telefono = models.IntegerField(default=0)
     correo = models.CharField(max_length=30)
-    fecha_nacimiento = models.DateField(default=0)
+    fecha_nacimiento = models.DateField()
     contrasena = models.CharField(max_length=30)
     rol = models.IntegerField(choices=ROLES)
 
-    def __str__(self):
-        return f"{self.nombre_apellido}"
+    history = HistoricalRecords()
 
+    def __str__(self):
+        return self.nombre_apellido
 
 
 class Archivo(models.Model):
     nombre = models.CharField(max_length=255)
     archivo = models.FileField(upload_to='archivos/%Y/%m/%d/')
-    
+
+    history = HistoricalRecords()
+
+    def __str__(self):
+        return self.nombre
+
 
 class Animal(models.Model):
     dueño = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-
-    codigo = models.CharField(max_length=30)  # id del animal
+    codigo = models.CharField(max_length=30)
     nombre = models.CharField(max_length=40)
-    foto = models.ImageField(upload_to="ganado/")
+    foto = models.ImageField(upload_to="ganado/", blank=True, null=True)
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return f"{self.nombre} ({self.codigo})"
@@ -43,13 +51,15 @@ class EventoAnimal(models.Model):
         ("parto", "Parto"),
         ("palpacion", "Palpación"),
         ("destete", "Destete"),
-        ("nacimiento","Nacimiento")
+        ("nacimiento", "Nacimiento")
     )
+
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE)
     tipo = models.CharField(max_length=20, choices=TIPOS)
     fecha = models.DateField()
     descripcion = models.TextField(blank=True, null=True)
 
+    history = HistoricalRecords()
 
     def __str__(self):
         return f"{self.animal.nombre} - {self.tipo}"
