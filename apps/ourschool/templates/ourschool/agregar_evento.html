@@ -1,6 +1,7 @@
 {% extends 'ourschool/base.html' %}
-{% block title %}Agregar Evento{% endblock %}
 {% load static %}
+
+{% block title %}Agregar Evento{% endblock %}
 
 {% block content %}
 
@@ -12,17 +13,23 @@
 
         <div class="mb-3">
             <label>Tipo de evento</label>
-            <select name="tipo" class="form-select">
+            <select name="tipo" class="form-select" required>
                 <option value="parto">Parto</option>
                 <option value="palpacion">Palpación</option>
                 <option value="destete">Destete</option>
-                <option value="nacimiento">nacimiento</option>
+                <option value="nacimiento">Nacimiento</option>
             </select>
         </div>
 
         <div class="mb-3">
             <label>Fecha</label>
             <input type="date" name="fecha" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Descripción (opcional)</label>
+            <textarea name="descripcion" class="form-control" rows="4"
+                placeholder="Ej: Parto sin complicaciones, cría sana..."></textarea>
         </div>
 
         <button class="btn btn-success">Guardar evento</button>

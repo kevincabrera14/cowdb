@@ -346,23 +346,25 @@ def eliminar_animal(request, animal_id):
 
 
 def agregar_evento(request, animal_id):
-    animal = Animal.objects.get(id=animal_id)
+    animal = get_object_or_404(Animal, id=animal_id)
 
     if request.method == "POST":
         tipo = request.POST.get("tipo")
         fecha = request.POST.get("fecha")
+        descripcion = request.POST.get("descripcion") 
 
         EventoAnimal.objects.create(
             animal=animal,
             tipo=tipo,
-            fecha=fecha
+            fecha=fecha,
+            descripcion=descripcion
         )
 
-        return redirect("detalle_animal", animal_id=animal.id)
+        return redirect("detalle_animal", animal.id)
 
-    return render(request, "ourschool/agregar_evento.html", {"animal": animal})
-
-
+    return render(request, "ourschool/agregar_evento.html", {
+        "animal": animal
+    })
 
 def detalle_animal(request, animal_id):
     if 'logueo' not in request.session:
