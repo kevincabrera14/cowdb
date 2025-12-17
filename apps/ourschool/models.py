@@ -18,7 +18,7 @@ class Usuario(models.Model):
     contrasena = models.CharField(max_length=30)
     rol = models.IntegerField(choices=ROLES)
 
-    history = HistoricalRecords()
+    #history = HistoricalRecords()
 
     def __str__(self):
         return self.nombre_apellido
@@ -28,7 +28,7 @@ class Archivo(models.Model):
     nombre = models.CharField(max_length=255)
     archivo = models.FileField(upload_to='archivos/%Y/%m/%d/')
 
-    history = HistoricalRecords()
+    #history = HistoricalRecords()
 
     def __str__(self):
         return self.nombre
@@ -59,7 +59,7 @@ class EventoAnimal(models.Model):
     fecha = models.DateField()
     descripcion = models.TextField(blank=True, null=True)
 
-    history = HistoricalRecords()
+    #history = HistoricalRecords()
 
     def __str__(self):
         return f"{self.animal.nombre} - {self.tipo}"
