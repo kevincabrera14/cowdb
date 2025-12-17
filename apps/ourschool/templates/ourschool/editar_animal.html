@@ -7,28 +7,32 @@
 
 <div class="card shadow p-4">
 
-<img src="{{ a.foto.url }}" width="200" class="rounded mb-3">
+    {% if animal.foto %}
+        <img src="{{ animal.foto.url }}" class="card-img-top mb-3" alt="Foto animal">
+    {% else %}
+        <img src="{% static 'ourschool/img/cowdb.png' %}" class="card-img-top mb-3" alt="Foto por defecto">
+    {% endif %}
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <div class="mb-3">
-        <label>Código</label>
-        <input type="text" name="codigo" value="{{ animal.codigo }}" class="form-control" required>
-    </div>
+        <div class="mb-3">
+            <label>Código</label>
+            <input type="text" name="codigo" value="{{ animal.codigo }}" class="form-control" required>
+        </div>
 
-    <div class="mb-3">
-        <label>Nombre</label>
-        <input type="text" name="nombre" value="{{ animal.nombre }}" class="form-control" required>
-    </div>
+        <div class="mb-3">
+            <label>Nombre</label>
+            <input type="text" name="nombre" value="{{ animal.nombre }}" class="form-control" required>
+        </div>
 
-    <div class="mb-3">
-        <label>Nueva foto (opcional)</label>
-        <input type="file" name="foto" class="form-control">
-    </div>
+        <div class="mb-3">
+            <label>Nueva foto (opcional)</label>
+            <input type="file" name="foto" class="form-control">
+        </div>
 
-    <button class="btn btn-warning">Actualizar</button>
-</form>
+        <button class="btn btn-warning">Actualizar</button>
+    </form>
 
 </div>
 
