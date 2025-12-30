@@ -366,17 +366,45 @@ def agregar_evento(request, animal_id):
         "animal": animal
     })
 
+
 def detalle_animal(request, animal_id):
     if 'logueo' not in request.session:
         return redirect('iniciar')
 
     animal = Animal.objects.get(id=animal_id)
-    eventos = EventoAnimal.objects.filter(animal=animal).order_by('-fecha')
+
+    eventos_parto = EventoAnimal.objects.filter(
+        animal=animal, tipo='parto'
+    ).order_by('-fecha')
+
+    eventos_palpacion = EventoAnimal.objects.filter(
+        animal=animal, tipo='palpacion'
+    ).order_by('-fecha')
+
+    eventos_destete = EventoAnimal.objects.filter(
+        animal=animal, tipo='destete'
+    ).order_by('-fecha')
 
     return render(request, "ourschool/detalle_animal.html", {
         "animal": animal,
-        "eventos": eventos
+        "eventos_parto": eventos_parto,
+        "eventos_palpacion": eventos_palpacion,
+        "eventos_destete": eventos_destete,
     })
+
+
+# cambio
+#def detalle_animal(request, animal_id):
+ #   if 'logueo' not in request.session:
+ #       return redirect('iniciar')
+#
+ #   animal = Animal.objects.get(id=animal_id)
+  #  eventos = EventoAnimal.objects.filter(animal=animal).order_by('-fecha')
+
+#    return render(request, "ourschool/detalle_animal.html", {
+ #       "animal": animal,
+  #      "eventos": eventos
+   # })
 
 
 

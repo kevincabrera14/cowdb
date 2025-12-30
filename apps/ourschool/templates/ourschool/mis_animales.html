@@ -41,7 +41,7 @@
                 <h5 class="card-title">{{ a.nombre }}</h5>
                 <p class="card-text">Código: <strong>{{ a.codigo }}</strong></p>
 
-                <a href="{% url 'detalle_animal' a.id %}" class="btn btn-info btn-sm">Detalles</a>
+                <a href="{% url 'detalle_animal' a.id %}" class="btn btn-info btn-sm">Eventos</a>
                 <a href="{% url 'editar_animal' a.id %}" class="btn btn-warning btn-sm">Editar</a>
                 <a href="{% url 'eliminar_animal' a.id %}" class="btn btn-danger btn-sm"
                     onclick="return confirm('¿Estás seguro de eliminar?')">Eliminar</a>

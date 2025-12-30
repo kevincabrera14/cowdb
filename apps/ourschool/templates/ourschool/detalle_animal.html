@@ -29,35 +29,91 @@
     </div>
 
     <!-- EVENTOS -->
-    <div class="col-md-8">
-        <h3 class="mb-3">Eventos</h3>
+<div class="col-md-8">
+    <h3 class="mb-3">Eventos</h3>
 
-        <a href="{% url 'agregar_evento' animal.id %}" class="btn btn-primary mb-3">
-            + Agregar Evento
-        </a>
+    <a href="{% url 'agregar_evento' animal.id %}" class="btn btn-primary mb-3">
+        + Agregar Evento
+    </a>
 
-        <ul class="list-group shadow">
-            {% for e in eventos %}
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+    <!-- PARTOS -->
+    <div class="card shadow mb-3">
+        <div class="card-header bg-success text-white">
+            Partos
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for e in eventos_parto %}
+            <li class="list-group-item d-flex justify-content-between">
                 <div>
-                    <strong>{{ e.get_tipo_display }}</strong> — {{ e.fecha }} <br>
-                    <p><strong>Observaciones:</strong> {{ e.descripcion|default:"Sin descripción" }}</p>
+                    {{ e.fecha }} <br>
+                    {{ e.descripcion|default:"Sin descripción" }}
                 </div>
-
                 <a href="{% url 'eliminar_evento' e.id %}"
                    class="btn btn-danger btn-sm"
-                   onclick="return confirm('¿Estás seguro de eliminar?')">
+                   onclick="return confirm('¿Eliminar evento?')">
                     Eliminar
                 </a>
             </li>
             {% empty %}
             <li class="list-group-item text-muted">
-                No hay eventos registrados.
+                No hay partos registrados.
             </li>
             {% endfor %}
         </ul>
     </div>
 
+    <!-- PALPACIONES -->
+    <div class="card shadow mb-3">
+        <div class="card-header bg-info text-white">
+            Palpaciones
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for e in eventos_palpacion %}
+            <li class="list-group-item d-flex justify-content-between">
+                <div>
+                    {{ e.fecha }} <br>
+                    {{ e.descripcion|default:"Sin descripción" }}
+                </div>
+                <a href="{% url 'eliminar_evento' e.id %}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Eliminar evento?')">
+                    Eliminar
+                </a>
+            </li>
+            {% empty %}
+            <li class="list-group-item text-muted">
+                No hay palpaciones registradas.
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- DESTETES -->
+    <div class="card shadow mb-3">
+        <div class="card-header bg-warning">
+            Destetes
+        </div>
+        <ul class="list-group list-group-flush">
+            {% for e in eventos_destete %}
+            <li class="list-group-item d-flex justify-content-between">
+                <div>
+                    {{ e.fecha }} <br>
+                    {{ e.descripcion|default:"Sin descripción" }}
+                </div>
+                <a href="{% url 'eliminar_evento' e.id %}"
+                   class="btn btn-danger btn-sm"
+                   onclick="return confirm('¿Eliminar evento?')">
+                    Eliminar
+                </a>
+            </li>
+            {% empty %}
+            <li class="list-group-item text-muted">
+                No hay destetes registrados.
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
+
 
 {% endblock %}
